@@ -9,14 +9,34 @@
         }
     </style>
 </head>
-<div class="maindiv jumbotron container ">
+<div class="container">
 
-    <form method="POST" action="">
+    {% comment %} <form method="POST" action="">
         {% csrf_token %}
         <p><input type="text" name="username" placeholder="Username..."></p>
         <p><input type="password" name="password" placeholder="Password..." ></p>
         <input class="btn btn-success" type="submit" value="Login">
         <p>Do not have an account<a href='{% url "register" %}'>Register</a></p>
+    </form> {% endcomment %}
+
+    <form method="POST"> 
+        {% csrf_token %}
+        <div class="container mt-5">
+            <h6>Haven't register yet, then click here        
+                <a href="/signup/" type="submit" class="btn" style="background-color: #4f868c; color: white;">Signup</a>
+            </h6>
+            <div class="mb-3">
+                <label for="username" class="form-label"><i style="font-weight: bold;">Username</i></label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label"><i style="font-weight: bold;">Password</i></label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+            </div>
+            <br>
+            <input type="submit" value="Submit" class="btn" style="background-color: #4f868c; color: white; font-size: larger; width: 8rem;">
+     
+        </div>
     </form>
 
 </div>

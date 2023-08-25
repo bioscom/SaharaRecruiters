@@ -1,0 +1,132 @@
+{% extends 'main.html' %}
+{% load static%}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <form action="{{request.path}}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="card col-sm-8">
+            <div class="card-header">
+                Post Jobs
+            </div>
+            <div class="card-body">
+                <div class="col-sm-12">
+                    <div class="row mb-3">
+                        <div class="col-sm-2">
+                            <label for="{{ form.name.id_for_label }}" class="form-label">Name</label>
+                        </div>
+                        <div class="col-sm-10">
+                             {% render_field form.name class="form-control" placeholder="" %}
+                        </div>
+                        <div class="invalid-feedback">{{ form.name.errors|first }}</div>
+                    </div>
+        
+                    <div class="row mb-3">
+                        <div class="col-sm-2">
+                            <label for="{{ form.position.id_for_label }}" class="form-label">Job Position</label>
+                        </div>
+                        <div class="col-sm-10">
+                             {% render_field form.position class="form-control" placeholder="" %}
+                        </div>
+                        <div class="invalid-feedback">{{ form.position.errors|first }}</div>
+                    </div>
+        
+                    <div class="row mb-3">
+                        <div class="col-sm-2">
+                            <label for="{{ form.salaryfrom.id_for_label }}" class="form-label">Salary from</label>
+                        </div>
+                        <div class="col-sm-4">
+                             {% render_field form.salaryfrom class="form-control" placeholder="" %}
+                        </div>
+                        <div class="invalid-feedback">{{ form.salaryfrom.errors|first }}</div>
+        
+                        <div class="col-sm-2 text-center">
+                            <label for="{{ form.salaryto.id_for_label }}" class="form-label">to</label>
+                        </div>
+                        <div class="col-sm-4">
+                             {% render_field form.salaryto class="form-control" placeholder="" %}
+                        </div>
+                    </div>
+        
+                    {% comment %} <div class="row mb-3">
+                        <div class="col-sm-2">
+                            <label for="{{ form.salaryto.id_for_label }}" class="form-label">Salary</label>
+                        </div>
+                        <div class="col-sm-10">
+                             {% render_field form.salaryto class="form-control" placeholder="" %}
+                        </div>
+                        <div class="invalid-feedback">{{ form.salaryto.errors|first }}</div>
+                    </div> {% endcomment %}
+        
+                    <div class="row mb-3">
+                        <div class="col-sm-2">
+                            <label for="{{ form.salaryterms.id_for_label }}" class="form-label">Salary Terms</label>
+                        </div>
+                        <div class="col-sm-10">
+                             {% render_field form.salaryterms class="form-control" placeholder="" %}
+                        </div>
+                        <div class="invalid-feedback">{{ form.salaryterms.errors|first }}</div>
+                    </div>
+        
+                    <div class="row mb-3">
+                        <div class="col-sm-2">
+                            <label for="{{ form.experience.id_for_label }}" class="form-label">Work Experience</label>
+                        </div>
+                        <div class="col-sm-10">
+                             {% render_field form.experience class="form-control" placeholder="" %}
+                        </div>
+                        <div class="invalid-feedback">{{ form.experience.errors|first }}</div>
+                    </div>
+        
+                    <div class="row mb-3">
+                        <div class="col-sm-2">
+                            <label for="{{ form.JobType.id_for_label }}" class="form-label">Job Type</label>
+                        </div>
+                        <div class="col-sm-10">
+                             {% render_field form.JobType class="form-control" placeholder="" %}
+                        </div>
+                        <div class="invalid-feedback">{{ form.JobType.errors|first }}</div>
+                    </div>
+        
+                    <div class="row mb-3">
+                        <div class="col-sm-2">
+                            <label for="{{ form.Location.id_for_label }}" class="form-label">Job Location</label>
+                        </div>
+                        <div class="col-sm-10">
+                             {% render_field form.Location class="form-control" placeholder="" %}
+                        </div>
+                        <div class="invalid-feedback">{{ form.Location.errors|first }}</div>
+                    </div>
+        
+                    <div class="row mb-3">
+                        <div class="col-sm-2">
+                            <label for="{{ form.description.id_for_label }}" class="form-label">Job Description</label>
+                        </div>
+                        <div class="col-sm-10">
+                             {% render_field form.description class="form-control" placeholder="" %}
+                        </div>
+                        <div class="invalid-feedback">{{ form.description.errors|first }}</div>
+                    </div>
+                </div>
+                {% comment %} {{form.as_p}} {% endcomment %}
+                
+            </div>
+            <div class="card-footer">
+                <input type="submit" class="btn btn-primary btn-sm" value="submit">
+            </div>
+        </div>
+
+        {% if form.errors %}
+            <ul>
+                {% for key,value in form.errors.items %} 
+                    <li>{{ key|escape }} : {{ value|escape }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}
